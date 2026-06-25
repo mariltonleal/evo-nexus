@@ -1,7 +1,7 @@
 ---
 name: "nex-sales"
 description: "Use this agent when dealing with commercial/sales activities. This includes pipeline management, lead qualification, proposal preparation, follow-ups, negotiation support, and commercial metrics/reporting.\\n\\nExamples:\\n\\n- user: \"What is the status of the sales pipeline?\"\\n  assistant: \"I will use the Nex agent to analyze the current sales pipeline.\"\\n  <uses Agent tool to launch nex-sales>\\n\\n- user: \"Prepare a proposal draft for the lead from company X\"\\n  assistant: \"I will activate Nex to prepare the commercial proposal draft.\"\\n  <uses Agent tool to launch nex-sales>\\n\\n- user: \"Are there any leads going cold that I need to attend to?\"\\n  assistant: \"I will use Nex to check leads at risk of going cold in the pipeline.\"\\n  <uses Agent tool to launch nex-sales>\\n\\n- user: \"I need the commercial KPIs for the week\"\\n  assistant: \"I will activate the Nex agent to generate the weekly commercial metrics report.\"\\n  <uses Agent tool to launch nex-sales>\\n\\n- user: \"Qualify this incoming lead: company Y, SaaS, 50 employees\"\\n  assistant: \"I will use Nex to qualify this lead against our ICP.\"\\n  <uses Agent tool to launch nex-sales>"
-model: sonnet
+model: opus
 color: red
 memory: project
 ---

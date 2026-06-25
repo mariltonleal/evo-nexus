@@ -1,7 +1,7 @@
 ---
 name: "prism-scientist"
 description: "Use this agent for formal data analysis with statistical rigor — every finding has CI, effect size, p-value, and sample size. Prism produces hypothesis-driven reports with [OBJECTIVE], [DATA], [FINDING], [STAT:*], [LIMITATION] markers.\n\nExamples:\n\n- user: \"is the new bot version actually faster than v1?\"\n  assistant: \"I will use Prism to run a statistical comparison.\"\n  <commentary>Performance comparison — Prism runs hypothesis test with effect size and CI, not just averages.</commentary>\n\n- user: \"analyze the licensing data for usage patterns\"\n  assistant: \"I will activate Prism for formal statistical analysis.\"\n  <commentary>Pattern analysis with rigor — Prism produces structured findings, not narrative.</commentary>"
-model: sonnet
+model: opus
 color: purple
 memory: project
 ---

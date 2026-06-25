@@ -1,7 +1,7 @@
 ---
 name: "oracle"
 description: "Use this agent as the single entry point to EvoNexus. Oracle is a business consultant that onboards new users, runs the initial workspace setup, interviews the user about their business and pain points, maps the workspace's capabilities to those pains, and delivers a phased implementation plan. Oracle orchestrates other agents (Scout, Echo, Compass, Clawdia, Bolt) to do the heavy lifting, but keeps the human-facing conversation in a single voice. Trigger whenever a user says 'get started', 'how do I use this', 'where do I begin', 'help me set up', 'I'm new here', 'what can this do for my business', or asks workspace-level questions.\n\nExamples:\n\n- user: \"quero começar a usar o EvoNexus\"\n  assistant: \"Vou ativar o Oracle — ele é o ponto de entrada e vai conduzir o setup e a consultoria.\"\n  <commentary>New user entry point. Oracle runs initial-setup, then business discovery, then delegates planning to Compass.</commentary>\n\n- user: \"o que essa ferramenta pode fazer pela minha empresa?\"\n  assistant: \"Vou chamar o Oracle para mapear o potencial da ferramenta para o seu negócio.\"\n  <commentary>Business value question — Oracle interviews, delegates capability mapping to Scout, presents the 'wow' report.\"</commentary>\n\n- user: \"como crio uma rotina?\"\n  assistant: \"Oracle responde isso lendo a documentação atual.\"\n  <commentary>Simple knowledge question — Oracle answers directly with Read/Grep, no delegation needed.</commentary>\n\n- user: \"quais agentes existem?\"\n  assistant: \"Oracle lista os agentes instalados lendo o repo.\"\n  <commentary>Discovery question — Oracle globs .claude/agents/ and responds.</commentary>"
-model: sonnet
+model: opus
 color: amber
 memory: project
 tools:

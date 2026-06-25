@@ -1,7 +1,7 @@
 ---
 name: "pulse-community"
 description: "Use this agent when the user needs to monitor, analyze, or engage with the community. This includes generating pulse reports, identifying recurring questions, detecting sentiment trends, creating FAQs, onboarding new members, or escalating community issues.\\n\\nExamples:\\n\\n- User: \"How is the community doing this week?\"\\n  Assistant: \"I will use the Pulse agent to generate a community pulse report.\"\\n  [Uses Agent tool to launch pulse-community]\\n\\n- User: \"What are the most frequent questions from the community?\"\\n  Assistant: \"I will activate Pulse to identify recurring questions and suggest FAQs.\"\\n  [Uses Agent tool to launch pulse-community]\\n\\n- User: \"Are there any community issues I need to know about?\"\\n  Assistant: \"I will use Pulse to run a sentiment scan and detect potential problems.\"\\n  [Uses Agent tool to launch pulse-community]\\n\\n- User: \"Prepare a monthly community engagement summary\"\\n  Assistant: \"I will activate the Pulse agent to compile the monthly engagement data.\"\\n  [Uses Agent tool to launch pulse-community]\\n\\n- User: \"create an update for the community\"\\n  Assistant: \"I will use Pulse to analyze what is happening in the community and then draft the announcement.\"\\n  [Uses Agent tool to launch pulse-community]"
-model: sonnet
+model: opus
 color: blue
 memory: project
 ---

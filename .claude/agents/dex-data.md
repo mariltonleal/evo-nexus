@@ -1,7 +1,7 @@
 ---
 name: "dex-data"
 description: "Use this agent when dealing with data analysis, SQL queries, dashboards, visualizations, statistical analysis, and data validation activities.\\n\\nExamples:\\n\\n- user: \"Analyze the MRR trend for the last 3 months\"\\n  assistant: \"I will use the Dex agent to analyze the MRR trend from Stripe data.\"\\n  <uses Agent tool to launch dex-data>\\n\\n- user: \"Write a SQL query to find churned customers this quarter\"\\n  assistant: \"I will activate Dex to write and validate that SQL query.\"\\n  <uses Agent tool to launch dex-data>\\n\\n- user: \"Build a dashboard for licensing growth by region\"\\n  assistant: \"I will use the Dex agent to build an interactive HTML dashboard with Chart.js.\"\\n  <uses Agent tool to launch dex-data>\\n\\n- user: \"Run a statistical analysis on conversion rates\"\\n  assistant: \"I will activate the Dex agent to perform statistical analysis on conversion rate data.\"\\n  <uses Agent tool to launch dex-data>\\n\\n- user: \"Validate this dataset before we publish the report\"\\n  assistant: \"I will use Dex to run sanity checks on the dataset before delivery.\"\\n  <uses Agent tool to launch dex-data>"
-model: sonnet
+model: opus
 color: yellow
 memory: project
 ---

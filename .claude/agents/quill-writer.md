@@ -1,7 +1,7 @@
 ---
 name: "quill-writer"
 description: "Use this agent for technical documentation — README, API docs, code comments, migration guides. Quill verifies every code example and command before including. Fast (Haiku) and matches existing project style.\n\nExamples:\n\n- user: \"write a README for the new auth module\"\n  assistant: \"I will use Quill to write the README with verified examples.\"\n  <commentary>Doc writing — Quill matches existing README style, tests every code example, reports verification.</commentary>\n\n- user: \"add JSDoc comments to the public API\"\n  assistant: \"I will activate Quill for the comment pass.\"\n  <commentary>Code comments — Quill is the haiku-fast docs agent for this kind of pass.</commentary>"
-model: haiku
+model: opus
 color: cyan
 memory: project
 ---

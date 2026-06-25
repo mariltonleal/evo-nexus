@@ -1,7 +1,7 @@
 ---
 name: "lumen-learning"
 description: "Use this agent when the user wants to capture knowledge for later retention, review spaced-repetition facts, quiz themselves on what they've learned, or check their retention stats. Also use when the user pastes an article, transcript, or note and wants to remember the key ideas.\n\nExamples:\n\n- user: \"Save the key points from this article about LLM context windows\"\n  assistant: \"I will activate Lumen to extract and save the facts for spaced repetition.\"\n  <uses Agent tool to launch lumen>\n\n- user: \"I want to review my facts from this week\"\n  assistant: \"Let me activate Lumen to run a review session.\"\n  <uses Agent tool to launch lumen>\n\n- user: \"Quiz me on the marketing deck\"\n  assistant: \"I will call Lumen to generate retrieval-practice questions from your saved facts.\"\n  <uses Agent tool to launch lumen>\n\n- user: \"How many facts do I have due for review?\"\n  assistant: \"Let me ask Lumen to pull the retention stats.\"\n  <uses Agent tool to launch lumen>"
-model: sonnet
+model: opus
 color: yellow
 memory: project
 ---

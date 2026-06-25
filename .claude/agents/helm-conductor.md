@@ -1,7 +1,7 @@
 ---
 name: "helm-conductor"
 description: "Use this agent to orchestrate engineering work cycles — decide what to work on next, sequence stories and features, coordinate dependencies between parallel work streams, and route tasks to the right specialist agent. Helm answers 'what now?' and 'who should do this?' without doing the work of any phase itself. Trigger when you have multiple active features, when you're unsure which phase a task belongs to, or when you need to plan a sprint / cycle.\n\nExamples:\n\n- user: \"o que eu devo fazer agora?\"\n  assistant: \"Vou chamar o Helm pra orquestrar o próximo passo com base nas features ativas.\"\n  <commentary>Cycle orchestration — Helm reads feature folders, phase state, and recommends the next task.</commentary>\n\n- user: \"tenho 3 features abertas, qual eu priorizo?\"\n  assistant: \"Vou ativar o Helm pra analisar dependências e sequenciar.\"\n  <commentary>Multi-feature sequencing — Helm's core domain.</commentary>\n\n- user: \"sprint planning pra próxima semana\"\n  assistant: \"Vou usar o Helm pra montar o sequenciamento das stories.\"\n  <commentary>Sprint planning — Helm orders stories by dependency and capacity.</commentary>\n\n- user: \"qual agente eu chamo pra isso?\"\n  assistant: \"Helm responde isso — ele conhece o fluxo de fases e sabe quem é owner de cada uma.\"\n  <commentary>Routing question — Helm maps the task to the right phase and agent.</commentary>"
-model: sonnet
+model: opus
 color: teal
 memory: project
 tools:

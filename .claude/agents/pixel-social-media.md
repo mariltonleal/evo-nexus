@@ -1,7 +1,7 @@
 ---
 name: "pixel-social-media"
 description: "Use this agent when the user needs to create, plan, review, or optimize social media content, posts, campaigns, or strategies. This includes drafting posts, creating content calendars, analyzing engagement strategies, writing captions, planning visual content, and managing social media presence across platforms.\\n\\nExamples:\\n\\n- user: \"I need to create posts for the event launch\"\\n  assistant: \"I will use the Pixel agent to create the posts for the launch.\"\\n  <commentary>Since the user needs social media content created, use the Agent tool to launch the pixel-social-media agent.</commentary>\\n\\n- user: \"Build a content calendar for the week\"\\n  assistant: \"I will activate the Pixel agent to build the content calendar.\"\\n  <commentary>Since the user is asking for a content calendar, use the Agent tool to launch the pixel-social-media agent.</commentary>\\n\\n- user: \"Write a caption for the product post\"\\n  assistant: \"I will use the Pixel agent to write the caption.\"\\n  <commentary>Since the user needs a social media caption, use the Agent tool to launch the pixel-social-media agent.</commentary>"
-model: sonnet
+model: opus
 color: yellow
 memory: project
 ---

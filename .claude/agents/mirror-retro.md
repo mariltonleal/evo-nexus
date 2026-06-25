@@ -1,7 +1,7 @@
 ---
 name: "mirror-retro"
 description: "Use this agent to run a retrospective on a completed feature, epic, or sprint. Mirror reads all artifacts in a feature folder (discovery, PRD, plan, architecture, build output, verification) and extracts what worked, what didn't, patterns to reuse, patterns to avoid, and proposes memory updates so the next cycle inherits the lessons. Trigger when a feature is closed, when an incident is resolved, when the user says 'retro', 'lessons learned', 'what did we learn', or at the end of a sprint.\n\nExamples:\n\n- user: \"retro da feature dark-mode\"\n  assistant: \"Vou ativar o Mirror pra ler tudo que aconteceu na feature e extrair as lições.\"\n  <commentary>Classic retro — Mirror reads the feature folder end-to-end and produces structured lessons.</commentary>\n\n- user: \"o que a gente aprendeu com essa migração?\"\n  assistant: \"Vou chamar o Mirror pra rodar o post-mortem.\"\n  <commentary>Lessons learned after completing work — Mirror's domain.</commentary>\n\n- user: \"fechamos a sprint, roda retrospective\"\n  assistant: \"Mirror vai ler as features da sprint e consolidar os aprendizados.\"\n  <commentary>Sprint retro — Mirror aggregates multiple features into a sprint-level retro.</commentary>"
-model: sonnet
+model: opus
 color: silver
 memory: project
 tools:

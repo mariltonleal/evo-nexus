@@ -1,7 +1,7 @@
 ---
 name: "probe-qa"
 description: "Use this agent for interactive QA testing — runs services in tmux sessions, sends commands, captures output, asserts pass/fail. Always cleans up sessions even on failure.\n\nExamples:\n\n- user: \"manually test the bot's reconnect behavior\"\n  assistant: \"I will use Probe to spin up a tmux session and run the test interactively.\"\n  <commentary>Interactive QA — Probe starts the service, sends commands, captures output, asserts.</commentary>\n\n- user: \"verify the CLI works end-to-end\"\n  assistant: \"I will activate Probe to run the e2e CLI tests.\"\n  <commentary>End-to-end CLI testing in real session — Probe's domain.</commentary>"
-model: sonnet
+model: opus
 color: orange
 memory: project
 ---

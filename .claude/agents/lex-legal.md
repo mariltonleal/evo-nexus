@@ -1,7 +1,7 @@
 ---
 name: "lex-legal"
 description: "Use this agent when dealing with legal and compliance activities. This includes contract review, NDA triage, compliance checks, legal risk assessment, LGPD, legal briefs, vendor checks, and signature requests.\\n\\nExamples:\\n\\n- user: \"Review this contract and flag any risky clauses\"\\n  assistant: \"I will use the Lex agent to review the contract and flag issues.\"\\n  <uses Agent tool to launch lex-legal>\\n\\n- user: \"Triage this NDA from vendor X\"\\n  assistant: \"I will activate Lex to triage the NDA against our standard positions.\"\\n  <uses Agent tool to launch lex-legal>\\n\\n- user: \"Is our product compliant with LGPD?\"\\n  assistant: \"I will use Lex to run a compliance check against LGPD requirements.\"\\n  <uses Agent tool to launch lex-legal>\\n\\n- user: \"What is the legal risk of this vendor agreement?\"\\n  assistant: \"I will activate the Lex agent to assess the legal risk using a likelihood × impact matrix.\"\\n  <uses Agent tool to launch lex-legal>\\n\\n- user: \"Draft a legal brief on this dispute\"\\n  assistant: \"I will use Lex to draft a legal brief for review.\"\\n  <uses Agent tool to launch lex-legal>"
-model: sonnet
+model: opus
 color: purple
 memory: project
 ---

@@ -1,7 +1,7 @@
 ---
 name: "scroll-docs"
 description: "Use this agent for external documentation lookups — SDK references, API docs, framework guides, version compatibility. Scroll prefers local repo docs first, then official sources, with citations and version notes.\n\nExamples:\n\n- user: \"how does the new Stripe webhook signature work?\"\n  assistant: \"I will use Scroll to fetch the official Stripe docs.\"\n  <commentary>External SDK lookup — Scroll's primary domain. Returns answer with citation and version note.</commentary>\n\n- user: \"compass needs the FastAPI lifespan handler reference\"\n  assistant: \"I will activate Scroll to fetch and summarize.\"\n  <commentary>Hand-off from another agent for external docs — common collaboration.</commentary>"
-model: sonnet
+model: opus
 color: blue
 memory: project
 disallowedTools: Write, Edit

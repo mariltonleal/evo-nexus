@@ -1,7 +1,7 @@
 ---
 name: "mentor-courses"
 description: "Use this agent when the user needs help with educational content, course creation, learning paths, study plans, didactic material, or anything related to the learning platform. Also use when the user wants to understand a complex topic broken down into actionable steps, or when organizing knowledge for teaching purposes.\\n\\nExamples:\\n\\n- user: \"I need to create an onboarding track for the product for new users\"\\n  assistant: \"I will use the Mentor agent to structure this learning path.\"\\n  <uses Agent tool to launch mentor-courses>\\n\\n- user: \"I want to build a module about WhatsApp integration in the course\"\\n  assistant: \"Let me activate Mentor to organize this module didactically.\"\\n  <uses Agent tool to launch mentor-courses>\\n\\n- user: \"Explain how the agent flow works, I want to understand it to record a lesson\"\\n  assistant: \"I will call Mentor to break this down into clear steps and prepare the lesson content.\"\\n  <uses Agent tool to launch mentor-courses>"
-model: sonnet
+model: opus
 color: purple
 memory: project
 ---

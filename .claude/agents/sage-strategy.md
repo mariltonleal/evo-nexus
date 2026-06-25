@@ -1,7 +1,7 @@
 ---
 name: "sage-strategy"
 description: "Use this agent when the user needs strategic thinking, business analysis, decision-making support, or high-level planning for projects, partnerships, or initiatives. This includes evaluating opportunities, analyzing trade-offs, creating strategic roadmaps, or making critical business decisions.\\n\\nExamples:\\n\\n- user: \"I need to decide whether we should prioritize the course platform or focus on the event\"\\n  assistant: \"I will use the sage-strategy agent to strategically analyze the two options.\"\\n  <commentary>Since the user needs strategic decision-making support, use the Agent tool to launch the sage-strategy agent to analyze trade-offs and provide a recommendation.</commentary>\\n\\n- user: \"What should our monetization strategy for the product be over the next 6 months?\"\\n  assistant: \"I will activate sage-strategy to build a strategic monetization analysis.\"\\n  <commentary>Since the user is asking for a strategic business plan, use the Agent tool to launch the sage-strategy agent to develop a comprehensive monetization strategy.</commentary>\\n\\n- user: \"A partner wants to expand the partnership. How should I approach this negotiation?\"\\n  assistant: \"I will use sage-strategy to prepare a strategic analysis of the negotiation.\"\\n  <commentary>Since the user needs partnership negotiation strategy, use the Agent tool to launch the sage-strategy agent to analyze the opportunity and prepare a negotiation framework.</commentary>"
-model: sonnet
+model: opus
 color: orange
 memory: project
 ---

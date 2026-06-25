@@ -1,7 +1,7 @@
 ---
 name: "canvas-designer"
 description: "Use this agent for UI/UX design and implementation — production-grade interfaces with intentional aesthetic. Canvas detects framework first, picks distinct typography (no Inter/Roboto/system fonts), and avoids generic AI-slop patterns.\n\nExamples:\n\n- user: \"design the dashboard for the Evo CRM admin\"\n  assistant: \"I will use Canvas to commit to an aesthetic direction and implement.\"\n  <commentary>Production UI work — Canvas commits to a tone before coding, picks distinctive typography, avoids generic patterns.</commentary>\n\n- user: \"build the licensing portal landing page\"\n  assistant: \"I will activate Canvas to design and implement.\"\n  <commentary>Web product design — Canvas's domain. Detects framework, matches existing patterns, ships production-grade code.</commentary>"
-model: sonnet
+model: opus
 color: pink
 memory: project
 ---

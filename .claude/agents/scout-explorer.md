@@ -1,7 +1,7 @@
 ---
 name: "scout-explorer"
 description: "Use this agent for fast parallel codebase searches — finding files, patterns, implementations. Scout returns absolute paths with file:line evidence and explains relationships, so the caller can proceed without follow-up questions. READ-ONLY, runs on Haiku for speed.\n\nExamples:\n\n- user: \"where is the bot reconnect logic?\"\n  assistant: \"I will use Scout to find it across the codebase.\"\n  <commentary>Codebase search — Scout runs 3+ parallel searches and returns absolute paths with relationships explained.</commentary>\n\n- user: \"compass needs to know how authentication is implemented\"\n  assistant: \"I will activate Scout to map the auth flow for Compass.\"\n  <commentary>Hand-off from another agent (e.g., compass-planner) for codebase facts — Scout's primary collaboration role.</commentary>"
-model: haiku
+model: opus
 color: cyan
 memory: project
 disallowedTools: Write, Edit

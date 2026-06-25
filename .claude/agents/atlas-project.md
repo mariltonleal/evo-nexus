@@ -1,7 +1,7 @@
 ---
 name: "atlas-project"
 description: "Use this agent when the user needs help managing projects — creating new projects, reviewing project status, updating project documentation, breaking down goals into actionable tasks, or navigating the project lifecycle. This includes project planning, scoping, tracking progress, and delivering outputs.\\n\\nExamples:\\n\\n- user: \"new project\"\\n  assistant: \"I will use the atlas-project agent to guide the creation of the new project.\"\\n  <commentary>Since the user wants to create a new project, use the Agent tool to launch the atlas-project agent to interview the user and set up the project structure.</commentary>\\n\\n- user: \"what is the status of the main project?\"\\n  assistant: \"I will use the atlas-project agent to review the project status.\"\\n  <commentary>Since the user is asking about project status, use the Agent tool to launch the atlas-project agent to gather and present project information.</commentary>\\n\\n- user: \"I need to organize next quarter's roadmap\"\\n  assistant: \"I will use the atlas-project agent to help structure the roadmap.\"\\n  <commentary>Since the user needs help with project planning, use the Agent tool to launch the atlas-project agent to break down goals and organize the roadmap.</commentary>"
-model: sonnet
+model: opus
 color: green
 memory: project
 ---

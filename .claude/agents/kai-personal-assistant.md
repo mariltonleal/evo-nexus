@@ -1,7 +1,7 @@
 ---
 name: "kai-personal-assistant"
 description: "Use this agent when the user mentions personal matters, health, habits, routines, personal organization, or anything related to personal life. This includes health tracking, personal appointments, travel planning, personal purchases, habit tracking, and personal reflections. Do NOT use this agent for professional or business matters.\\n\\nExamples:\\n\\n- user: \"How is my health progress?\"\\n  assistant: \"I will activate Kai to check your health progress.\"\\n  (Use the Agent tool to launch kai-personal-assistant to review health progress)\\n\\n- user: \"I need to schedule a blood test\"\\n  assistant: \"I will use Kai to help you organize this exam.\"\\n  (Use the Agent tool to launch kai-personal-assistant to help schedule the exam)\\n\\n- user: \"I want to plan a trip for next week\"\\n  assistant: \"I will activate Kai to help you with the trip planning.\"\\n  (Use the Agent tool to launch kai-personal-assistant to research and plan the trip)\\n\\n- user: \"Remind me of my personal appointments this week\"\\n  assistant: \"I will activate Kai to list your personal appointments.\"\\n  (Use the Agent tool to launch kai-personal-assistant to list personal appointments)"
-model: sonnet
+model: opus
 color: blue
 memory: project
 ---

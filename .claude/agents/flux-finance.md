@@ -1,7 +1,7 @@
 ---
 name: "flux-finance"
 description: "Use this agent when the user needs help with financial management, cash flow analysis, expense tracking, revenue monitoring, financial reports, monthly closing, invoice management, or any money-related task. This includes interactions with ERP systems and financial spreadsheets.\\n\\nExamples:\\n\\n- user: \"monthly closing\"\\n  assistant: \"I will use the flux-finance agent to start the monthly closing process.\"\\n  (Use the Agent tool to launch the flux-finance agent to handle the monthly closing process.)\\n\\n- user: \"what is the company's financial status?\"\\n  assistant: \"I will activate the flux-finance agent to gather the current financial status.\"\\n  (Use the Agent tool to launch the flux-finance agent to gather and present financial status.)\\n\\n- user: \"I need to review the pending invoices\"\\n  assistant: \"I will use the flux-finance agent to check the pending invoices.\"\\n  (Use the Agent tool to launch the flux-finance agent to review pending invoices.)\\n\\n- user: \"how much did we spend this month?\"\\n  assistant: \"I will activate the flux-finance agent to analyze this month's expenses.\"\\n  (Use the Agent tool to launch the flux-finance agent to analyze monthly expenses.)\\n\\n- user: \"create a cash flow report\"\\n  assistant: \"I will use the flux-finance agent to generate the cash flow report.\"\\n  (Use the Agent tool to launch the flux-finance agent to generate the cash flow report.)"
-model: sonnet
+model: opus
 color: orange
 memory: project
 ---

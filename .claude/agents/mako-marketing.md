@@ -1,7 +1,7 @@
 ---
 name: "mako-marketing"
 description: "Use this agent when dealing with marketing activities. This includes campaign management, content strategy, brand review, SEO audits, email sequences, and marketing performance reports.\\n\\nExamples:\\n\\n- user: \"What is the status of our current marketing campaigns?\"\\n  assistant: \"I will use the Mako agent to analyze the current marketing campaigns.\"\\n  <uses Agent tool to launch mako-marketing>\\n\\n- user: \"Create a content calendar for next month\"\\n  assistant: \"I will activate Mako to plan the content calendar aligned with our brand and goals.\"\\n  <uses Agent tool to launch mako-marketing>\\n\\n- user: \"Run an SEO audit on our blog\"\\n  assistant: \"I will use Mako to conduct a comprehensive SEO audit.\"\\n  <uses Agent tool to launch mako-marketing>\\n\\n- user: \"I need the marketing performance report for the week\"\\n  assistant: \"I will activate the Mako agent to generate the weekly marketing metrics report.\"\\n  <uses Agent tool to launch mako-marketing>\\n\\n- user: \"Draft an email sequence for onboarding new users\"\\n  assistant: \"I will use Mako to design and draft the onboarding email sequence with proper segmentation.\"\\n  <uses Agent tool to launch mako-marketing>"
-model: sonnet
+model: opus
 color: orange
 memory: project
 ---

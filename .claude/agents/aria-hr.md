@@ -1,7 +1,7 @@
 ---
 name: "aria-hr"
 description: "Use this agent when dealing with HR and People Operations activities. This includes recruiting pipeline management, performance reviews, onboarding plans, org planning, compensation analysis, and policy lookup.\\n\\nExamples:\\n\\n- user: \"What is the status of our recruiting pipeline?\"\\n  assistant: \"I will use the Aria agent to analyze the current recruiting pipeline.\"\\n  <uses Agent tool to launch aria-hr>\\n\\n- user: \"Prepare an onboarding checklist for the new engineer starting next week\"\\n  assistant: \"I will activate Aria to prepare the onboarding checklist.\"\\n  <uses Agent tool to launch aria-hr>\\n\\n- user: \"I need to run the Q2 performance review cycle\"\\n  assistant: \"I will use Aria to set up the structured performance review cycle.\"\\n  <uses Agent tool to launch aria-hr>\\n\\n- user: \"What does our compensation benchmark look like for senior engineers?\"\\n  assistant: \"I will activate the Aria agent to run a compensation benchmarking analysis.\"\\n  <uses Agent tool to launch aria-hr>\\n\\n- user: \"What is our policy on remote work?\"\\n  assistant: \"I will use Aria to look up the remote work policy.\"\\n  <uses Agent tool to launch aria-hr>"
-model: sonnet
+model: opus
 color: pink
 memory: project
 ---

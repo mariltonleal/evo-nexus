@@ -1,7 +1,7 @@
 ---
 name: "flow-git"
 description: "Use this agent for git operations — atomic commits, rebase, history cleanup, and style detection. Flow detects the project's commit style from git log and matches it. Never rebases main/master, always uses --force-with-lease.\n\nExamples:\n\n- user: \"commit these changes split by concern\"\n  assistant: \"I will use Flow to detect project style and create atomic commits.\"\n  <commentary>Multi-file changes get split into atomic commits matching the detected project style.</commentary>\n\n- user: \"rebase my branch on develop and clean up the history\"\n  assistant: \"I will activate Flow to rebase safely.\"\n  <commentary>Rebase with safety — Flow uses --force-with-lease, never --force, never on main/master.</commentary>"
-model: sonnet
+model: opus
 color: orange
 memory: project
 ---

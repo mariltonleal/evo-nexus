@@ -1,7 +1,7 @@
 ---
 name: "zara-cs"
 description: "Use this agent when dealing with customer success activities. This includes ticket triage, customer escalation, customer research, draft responses, KB articles, and health scores.\\n\\nExamples:\\n\\n- user: \"Triage the open support tickets and prioritize them\"\\n  assistant: \"I will use the Zara agent to triage and prioritize the open support tickets.\"\\n  <uses Agent tool to launch zara-cs>\\n\\n- user: \"Draft a response for the customer complaining about downtime\"\\n  assistant: \"I will activate Zara to draft an empathetic and professional response.\"\\n  <uses Agent tool to launch zara-cs>\\n\\n- user: \"This customer issue needs to go to engineering — prepare the escalation\"\\n  assistant: \"I will use Zara to package a full escalation with context for the engineering team.\"\\n  <uses Agent tool to launch zara-cs>\\n\\n- user: \"Create a KB article from the issue we resolved yesterday\"\\n  assistant: \"I will activate the Zara agent to create a knowledge base article from the resolved issue.\"\\n  <uses Agent tool to launch zara-cs>\\n\\n- user: \"Which customers are at risk of churning based on their health scores?\"\\n  assistant: \"I will use Zara to analyze health scores and identify customers at churn risk.\"\\n  <uses Agent tool to launch zara-cs>"
-model: sonnet
+model: opus
 color: cyan
 memory: project
 ---

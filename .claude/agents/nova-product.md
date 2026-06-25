@@ -1,7 +1,7 @@
 ---
 name: "nova-product"
 description: "Use this agent when dealing with product management activities. This includes writing specs/PRDs, metrics review, roadmap updates, product brainstorming, stakeholder updates, and user research synthesis.\\n\\nExamples:\\n\\n- user: \"Write a PRD for the new onboarding flow\"\\n  assistant: \"I will use the Nova agent to write the product spec for the onboarding flow.\"\\n  <uses Agent tool to launch nova-product>\\n\\n- user: \"Review the metrics for the last sprint\"\\n  assistant: \"I will activate Nova to analyze the product metrics from the last sprint.\"\\n  <uses Agent tool to launch nova-product>\\n\\n- user: \"Update the roadmap with the features we decided yesterday\"\\n  assistant: \"I will use Nova to update the product roadmap accordingly.\"\\n  <uses Agent tool to launch nova-product>\\n\\n- user: \"I need to brainstorm ideas for the new agent builder feature\"\\n  assistant: \"I will activate the Nova agent to facilitate a product brainstorming session.\"\\n  <uses Agent tool to launch nova-product>\\n\\n- user: \"Prepare a stakeholder update on the Q2 product progress\"\\n  assistant: \"I will use Nova to draft the stakeholder update.\"\\n  <uses Agent tool to launch nova-product>"
-model: sonnet
+model: opus
 color: blue
 memory: project
 ---
