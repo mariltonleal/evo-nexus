@@ -1119,4 +1119,8 @@ if __name__ == "__main__":
     # dashboard/backend/*.py take effect without a manual restart. Disabled by
     # default — production runs with a fixed process managed by systemd/docker.
     dev_mode = os.getenv("EVONEXUS_DEV") == "1"
-    app.run(host="0.0.0.0", port=port, debug=dev_mode, use_reloader=dev_mode)
+    # Bind host is configurable so dev runs can listen on localhost only
+    # (e.g. behind an SSH tunnel). Defaults to 0.0.0.0 to preserve the
+    # container/production behaviour where Traefik fronts the service.
+    host = os.environ.get("EVONEXUS_HOST", "0.0.0.0")
+    app.run(host=host, port=port, debug=dev_mode, use_reloader=dev_mode)
