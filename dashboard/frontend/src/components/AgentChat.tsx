@@ -99,6 +99,8 @@ export default function AgentChat({ agent, sessionId, accentColor = '#00FFA7', e
   const [editingUuid, setEditingUuid] = useState<string | null>(null)
   const [editingText, setEditingText] = useState('')
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  // Per-agent Auto Mode (trust mode). null = still loading.
+  const [autoMode, setAutoMode] = useState<boolean | null>(null)
   const wsRef = useRef<WebSocket | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -317,6 +319,38 @@ export default function AgentChat({ agent, sessionId, accentColor = '#00FFA7', e
       })
       .catch(() => {})
   }, [])
+
+  // Load this agent's effective Auto Mode (trust mode) on mount / agent change
+  useEffect(() => {
+    let cancelled = false
+    setAutoMode(null)
+    fetch(`/api/settings/chat?agent=${encodeURIComponent(agent)}`, { credentials: 'include' })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (!cancelled && d && typeof d.trustMode === 'boolean') setAutoMode(d.trustMode)
+      })
+      .catch(() => {})
+    return () => { cancelled = true }
+  }, [agent])
+
+  // Toggle Auto Mode for THIS agent only (per-agent override in workspace.yaml)
+  const toggleAutoMode = useCallback(async () => {
+    if (autoMode === null) return
+    const next = !autoMode
+    setAutoMode(next) // optimistic
+    try {
+      const res = await fetch('/api/settings/chat', {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ agent, trustMode: next }),
+      })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    } catch (err: any) {
+      setAutoMode(!next) // revert on failure
+      toast.error('Falha ao alterar o Auto Mode', err?.message)
+    }
+  }, [agent, autoMode, toast])
 
   // Fetch open tickets for this agent when picker opens (Feature 1.3)
   useEffect(() => {
@@ -910,10 +944,31 @@ export default function AgentChat({ agent, sessionId, accentColor = '#00FFA7', e
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
+      {/* Auto Mode toggle — per-agent trust mode (auto-approve tools) */}
+      {autoMode !== null && (
+        <div className="absolute top-3 right-3 z-40">
+          <button
+            onClick={toggleAutoMode}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[10px] transition-colors"
+            style={{
+              background: autoMode ? '#22c55e15' : '#161b22',
+              borderColor: autoMode ? '#22c55e40' : '#21262d',
+              color: autoMode ? '#22c55e' : '#667085',
+            }}
+            title={autoMode
+              ? 'Auto Mode ON — este agente aprova as ações (Write/Edit/Bash) automaticamente. Clique para desligar.'
+              : 'Auto Mode OFF — este agente pede aprovação a cada ação. Clique para ligar.'}
+          >
+            <ShieldAlert size={11} />
+            <span>Auto Mode {autoMode ? 'ON' : 'OFF'}</span>
+          </button>
+        </div>
+      )}
+
       {/* Corner status indicator */}
       {(isConnecting || effectiveError) && (
         <div
-          className="absolute top-3 right-3 z-40 flex items-center gap-1.5 px-2 py-1 rounded-full border text-[10px] max-w-[280px]"
+          className="absolute top-12 right-3 z-40 flex items-center gap-1.5 px-2 py-1 rounded-full border text-[10px] max-w-[280px]"
           style={{
             background: effectiveError ? '#ef444415' : '#F59E0B15',
             borderColor: effectiveError ? '#ef444440' : '#F59E0B40',

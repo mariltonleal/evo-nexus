@@ -300,20 +300,56 @@ def delete_routine(frequency: str, slug: str):
 
 # ── Chat settings endpoints ──────────────────────────────────────────────────
 
+def _agent_exists(slug) -> bool:
+    """True if `<slug>.md` is a real agent file. Guards against path traversal."""
+    if not slug or not isinstance(slug, str) or "/" in slug or "\\" in slug or ".." in slug:
+        return False
+    agents_dir = (WORKSPACE / ".claude" / "agents").resolve()
+    path = (agents_dir / f"{slug}.md").resolve()
+    try:
+        path.relative_to(agents_dir)
+    except ValueError:
+        return False
+    return path.is_file()
+
+
 @bp.route("/api/settings/chat")
 @login_required
 def get_chat_settings():
-    """Return chat section of workspace.yaml as JSON."""
+    """Return chat trust settings.
+
+    With ?agent=<slug>, return the *effective* trust mode for that agent
+    (per-agent override under chat.trustModeByAgent if present, else the global
+    chat.trustMode). Without an agent, return the global value (legacy shape).
+    """
     config_path = WORKSPACE / "config" / "workspace.yaml"
     data = _load_yaml(config_path)
     chat = data.get("chat") or {}
-    return jsonify({"trustMode": bool(chat.get("trustMode", False))})
+    global_mode = bool(chat.get("trustMode", False))
+
+    agent = request.args.get("agent")
+    if agent:
+        by_agent = chat.get("trustModeByAgent") or {}
+        overridden = isinstance(by_agent, dict) and agent in by_agent
+        effective = bool(by_agent.get(agent, global_mode)) if overridden else global_mode
+        return jsonify({
+            "agent": agent,
+            "trustMode": effective,
+            "overridden": overridden,
+            "globalTrustMode": global_mode,
+        })
+    return jsonify({"trustMode": global_mode})
 
 
 @bp.route("/api/settings/chat", methods=["PATCH"])
 @login_required
 def update_chat_settings():
-    """Update chat.trustMode in workspace.yaml atomically."""
+    """Update chat trust settings in workspace.yaml atomically.
+
+    Body `{agent, trustMode}` sets the per-agent override under
+    chat.trustModeByAgent[<agent>]. Body `{trustMode}` (no agent) sets the
+    global chat.trustMode (legacy behavior, used by /settings).
+    """
     from models import audit
     _require_manage()
 
@@ -321,22 +357,38 @@ def update_chat_settings():
     if "trustMode" not in body or not isinstance(body["trustMode"], bool):
         abort(400, "Body must contain trustMode (bool)")
 
+    agent = body.get("agent")
+    if agent is not None and not _agent_exists(agent):
+        abort(400, "Unknown agent")
+
     config_path = WORKSPACE / "config" / "workspace.yaml"
     tmp_path = config_path.with_suffix(".yaml.tmp")
 
     import yaml
 
     data = _load_yaml(config_path)
-    data.setdefault("chat", {})["trustMode"] = body["trustMode"]
+    chat = data.setdefault("chat", {})
+    if agent:
+        by_agent = chat.get("trustModeByAgent")
+        if not isinstance(by_agent, dict):
+            by_agent = {}
+            chat["trustModeByAgent"] = by_agent
+        by_agent[agent] = body["trustMode"]
+        audit_detail = f"trustMode[{agent}] set to {body['trustMode']}"
+    else:
+        chat["trustMode"] = body["trustMode"]
+        audit_detail = f"trustMode set to {body['trustMode']}"
 
     with open(tmp_path, "w", encoding="utf-8") as f:
         yaml.safe_dump(data, f, default_flow_style=False, allow_unicode=True)
     import os as _os
     _os.replace(tmp_path, config_path)
 
-    audit(current_user, "chat_settings_updated", "config",
-          f"trustMode set to {body['trustMode']}")
-    return jsonify({"trustMode": body["trustMode"]})
+    audit(current_user, "chat_settings_updated", "config", audit_detail)
+    resp = {"trustMode": body["trustMode"]}
+    if agent:
+        resp["agent"] = agent
+    return jsonify(resp)
 
 
 # ── Scheduler reload ──────────────────────────────────────────────────────────

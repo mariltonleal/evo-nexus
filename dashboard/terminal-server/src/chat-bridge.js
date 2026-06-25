@@ -16,19 +16,69 @@ let sdkModule = null;
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..');
 
 /**
- * Read chat.trustMode from config/workspace.yaml.
- * Uses a targeted regex — no YAML dep needed.
- * Returns false if the key is absent or parsing fails.
+ * Read the effective chat trust mode from config/workspace.yaml.
+ *
+ * Resolution order:
+ *   1. Per-agent override under `chat.trustModeByAgent.<agentName>` (if present).
+ *   2. Global `chat.trustMode` (legacy default).
+ *
+ * No YAML dep on the terminal-server — we scan the text directly.
+ * Returns false if nothing matches or parsing fails.
+ *
+ * @param {string|null} [agentName] - agent slug to look up an override for.
  */
-function readTrustMode() {
+function readTrustMode(agentName) {
   try {
     const yaml = fs.readFileSync(path.join(WORKSPACE_ROOT, 'config', 'workspace.yaml'), 'utf8');
-    // Match `chat:` section followed by a line containing `trustMode: true`
+    // 1. Per-agent override wins when explicitly set (true OR false).
+    if (agentName) {
+      const override = readAgentTrustOverride(yaml, agentName);
+      if (override !== null) return override;
+    }
+    // 2. Global default: `chat:` section with a `trustMode: true|false` line.
     const m = yaml.match(/^chat:\s*\n(?:[ \t]+[^\n]*\n)*?[ \t]+trustMode:\s*(true|false)/m);
     return m ? m[1] === 'true' : false;
   } catch {
     return false;
   }
+}
+
+/**
+ * Find `<agentName>: true|false` under the `chat.trustModeByAgent:` block.
+ * Returns true/false when an explicit override exists, or null when absent.
+ * Line-based scan (robust to ordering / other chat keys) — no YAML dep.
+ */
+function readAgentTrustOverride(yamlText, agentName) {
+  const lines = yamlText.split('\n');
+  let inChat = false;       // currently inside the top-level `chat:` block
+  let inByAgent = false;    // currently inside `trustModeByAgent:` children
+  let byAgentIndent = -1;   // indentation of the `trustModeByAgent:` key
+  for (const rawLine of lines) {
+    const line = rawLine.replace(/\r$/, '');
+    if (line.trim() === '' || line.trim().startsWith('#')) continue;
+    const indent = line.length - line.replace(/^[ \t]*/, '').length;
+    if (indent === 0) {
+      // New top-level key — only `chat:` keeps us in scope.
+      inChat = /^chat:\s*$/.test(line);
+      inByAgent = false;
+      continue;
+    }
+    if (!inChat) continue;
+    if (inByAgent) {
+      if (indent > byAgentIndent) {
+        const m = line.match(/^[ \t]*['"]?([^:'"\s]+)['"]?:\s*(true|false)\s*$/);
+        if (m && m[1] === agentName) return m[2] === 'true';
+        continue;
+      }
+      // De-indented back to a chat-level key — leave the byAgent block.
+      inByAgent = false;
+    }
+    if (/^[ \t]*trustModeByAgent:\s*$/.test(line)) {
+      inByAgent = true;
+      byAgentIndent = indent;
+    }
+  }
+  return null;
 }
 
 // Tools that run silently without user confirmation.
@@ -477,9 +527,10 @@ class ChatBridge {
     ];
 
     // trustMode is read fresh on EVERY tool decision below, so toggling it in
-    // the UI takes effect mid-session without needing a restart.
-    if (readTrustMode()) {
-      console.log(`[chat-bridge] Trust mode ON at session start (${sessionId})`);
+    // the UI takes effect mid-session without needing a restart. Resolved
+    // per-agent (chat.trustModeByAgent), falling back to the global default.
+    if (readTrustMode(agentName)) {
+      console.log(`[chat-bridge] Trust mode ON at session start (${sessionId}, agent: ${agentName || 'none'})`);
     }
 
     // Per-tool approval flow — works for main thread AND spawned subagents.
@@ -509,7 +560,7 @@ class ChatBridge {
     };
 
     queryOptions.canUseTool = async (toolName, input, sdkOptions) => {
-      if (readTrustMode() || AUTO_APPROVE.has(toolName)) {
+      if (readTrustMode(agentName) || AUTO_APPROVE.has(toolName)) {
         return { behavior: 'allow', updatedInput: input ?? {} };
       }
       const requestId = sdkOptions.toolUseID || `req-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -523,7 +574,7 @@ class ChatBridge {
           const toolName = hookInput.tool_name;
           const toolInput = hookInput.tool_input;
           const agentId = hookInput.agent_id || null;
-          if (readTrustMode() || AUTO_APPROVE.has(toolName)) {
+          if (readTrustMode(agentName) || AUTO_APPROVE.has(toolName)) {
             return {
               hookSpecificOutput: {
                 hookEventName: 'PreToolUse',
